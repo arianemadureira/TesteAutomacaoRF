@@ -20,6 +20,7 @@ prossiga caso esteja tudo certo.
     Clicar Botao Finalizar compra
 
 Realize o cadastro do cliente preenchendo todos os campos obrigatórios dos formulários.
+    [Documentation]   Alterar o e-mail abaixo cada nova execução
     Adicionar e-mail howefiv919@xmailweb.com
     Clicar botão create account
     Selecionar genero tipo 2

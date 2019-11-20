@@ -20,7 +20,7 @@ prossiga caso esteja tudo certo.
     Clicar Botao Finalizar compra
 
 Realize o cadastro do cliente preenchendo todos os campos obrigatórios dos formulários.
-    Adicionar e-mail hatewe5212@4xmail.net
+    Adicionar e-mail howefiv919@xmailweb.com
     Clicar botão create account
     Selecionar genero tipo 2
     Inserir First name Testando

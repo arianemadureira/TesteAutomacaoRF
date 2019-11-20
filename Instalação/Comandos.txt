@@ -1,0 +1,12 @@
+pip install robotframework
+pip install robotframework-selenium2library
+pip install robotframework-requests
+pip install --upgrade pip --user
+
+
+SENHA MANUAL: Qualidade
+
+Para executar os testes cases, é necessário digitar o comando Robot+caminhodo arquivo como abaixo:
+
+robot	C:\Git\TesteAutomação\TesteAutomacaoRF\TestCase\TC_Automacao.robot
+robot	C:\Git\TesteAutomação\TesteAutomacaoRF\TestCase\API\APITests.robot

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.6.5 on win32)" generated="20191120 16:38:55.331" rpa="false">
+<suite id="s1" name="APITests" source="C:\Git\TesteAutomação\TesteAutomacaoRF\TestCase\API\APITests.robot">
+<test id="s1-t1" name="Cenario Validar os dados que retorna.">
+<kw name="Given Esteja conectado no webservice">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Api</arg>
+<arg>http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart</arg>
+</arguments>
+<msg timestamp="20191120 16:38:55.748" level="INFO">Creating Session using : alias=Api, url=http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20191120 16:38:55.748" endtime="20191120 16:38:55.752"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:55.747" endtime="20191120 16:38:55.752"></status>
+</kw>
+<kw name="When o usuário consultar o item id 1">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20191120 16:38:55.757" level="INFO">${headers} = {}</msg>
+<status status="PASS" starttime="20191120 16:38:55.754" endtime="20191120 16:38:55.757"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${headers}</arg>
+<arg>Content-Type</arg>
+<arg>application/json</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:55.758" endtime="20191120 16:38:55.759"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>Api</arg>
+<arg>/${id}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20191120 16:38:55.762" level="INFO">GET Request using : uri=/1, params=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+data=None 
+json=None</msg>
+<msg timestamp="20191120 16:38:56.093" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:55.760" endtime="20191120 16:38:56.093"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Resposta: ${RESPOSTA.content}</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.093" endtime="20191120 16:38:56.097"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Valor retornado: ${RESPOSTA.text}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.097" level="INFO">Valor retornado: {"id":"1","createdAt":"2019-11-09T18:25:04.019Z","name":"Alfonso Sipes","avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/kevka/128.jpg"}</msg>
+<status status="PASS" starttime="20191120 16:38:56.097" endtime="20191120 16:38:56.097"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.097" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.097" endtime="20191120 16:38:56.097"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:55.753" endtime="20191120 16:38:56.097"></status>
+</kw>
+<kw name="Then Validar os dados retornados">
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Log:${RESPOSTA.json()}</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.102" endtime="20191120 16:38:56.102"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>O valor restornado existe no JSON: ${RESPOSTA.json()}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.108" level="INFO">O valor restornado existe no JSON: {'id': '1', 'createdAt': '2019-11-09T18:25:04.019Z', 'name': 'Alfonso Sipes', 'avatar': 'https://s3.amazonaws.com/uifaces/faces/twitter/kevka/128.jpg'}</msg>
+<status status="PASS" starttime="20191120 16:38:56.106" endtime="20191120 16:38:56.109"></status>
+</kw>
+<kw name="Dictionary Should Contain Value" library="Collections">
+<doc>Fails if ``value`` is not found from ``dictionary``.</doc>
+<arguments>
+<arg>${RESPOSTA.json()}</arg>
+<arg>Alfonso Sipes</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.109" endtime="20191120 16:38:56.111"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.102" endtime="20191120 16:38:56.111"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:55.744" endtime="20191120 16:38:56.114" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Cenario Validar erro retornado">
+<kw name="Given Esteja conectado no webservice">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Api</arg>
+<arg>http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.121" level="INFO">Creating Session using : alias=Api, url=http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20191120 16:38:56.121" endtime="20191120 16:38:56.121"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.120" endtime="20191120 16:38:56.121"></status>
+</kw>
+<kw name="When o usuário consultar o item id 0">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20191120 16:38:56.126" level="INFO">${headers} = {}</msg>
+<status status="PASS" starttime="20191120 16:38:56.126" endtime="20191120 16:38:56.126"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${headers}</arg>
+<arg>Content-Type</arg>
+<arg>application/json</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.126" endtime="20191120 16:38:56.126"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>Api</arg>
+<arg>/${id}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20191120 16:38:56.130" level="INFO">GET Request using : uri=/0, params=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+data=None 
+json=None</msg>
+<msg timestamp="20191120 16:38:56.452" level="INFO">${RESPOSTA} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.126" endtime="20191120 16:38:56.452"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Resposta: ${RESPOSTA.content}</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.452" endtime="20191120 16:38:56.456"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Valor retornado: ${RESPOSTA.text}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.459" level="INFO">Valor retornado: "Not found"</msg>
+<status status="PASS" starttime="20191120 16:38:56.457" endtime="20191120 16:38:56.459"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.461" level="INFO">${RESPOSTA} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.459" endtime="20191120 16:38:56.461"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.125" endtime="20191120 16:38:56.461"></status>
+</kw>
+<kw name="Then Validar a validação de erro retornado">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>404</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.463" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.463" endtime="20191120 16:38:56.463"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Resposta.status_code: ${RESPOSTA.status_code}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.473" level="INFO">Resposta.status_code: 404</msg>
+<status status="PASS" starttime="20191120 16:38:56.463" endtime="20191120 16:38:56.473"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.463" endtime="20191120 16:38:56.473"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.118" endtime="20191120 16:38:56.476" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Cenario validar Status Code sucesso">
+<kw name="Given Esteja conectado no webservice">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Api</arg>
+<arg>http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.487" level="INFO">Creating Session using : alias=Api, url=http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20191120 16:38:56.486" endtime="20191120 16:38:56.487"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.486" endtime="20191120 16:38:56.487"></status>
+</kw>
+<kw name="When o usuário consultar o item id 1">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20191120 16:38:56.492" level="INFO">${headers} = {}</msg>
+<status status="PASS" starttime="20191120 16:38:56.492" endtime="20191120 16:38:56.492"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${headers}</arg>
+<arg>Content-Type</arg>
+<arg>application/json</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.492" endtime="20191120 16:38:56.492"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>Api</arg>
+<arg>/${id}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20191120 16:38:56.497" level="INFO">GET Request using : uri=/1, params=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+data=None 
+json=None</msg>
+<msg timestamp="20191120 16:38:56.807" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.492" endtime="20191120 16:38:56.807"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Resposta: ${RESPOSTA.content}</arg>
+</arguments>
+<status status="PASS" starttime="20191120 16:38:56.811" endtime="20191120 16:38:56.813"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Valor retornado: ${RESPOSTA.text}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.814" level="INFO">Valor retornado: {"id":"1","createdAt":"2019-11-09T18:25:04.019Z","name":"Alfonso Sipes","avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/kevka/128.jpg"}</msg>
+<status status="PASS" starttime="20191120 16:38:56.814" endtime="20191120 16:38:56.814"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.814" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.814" endtime="20191120 16:38:56.814"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.491" endtime="20191120 16:38:56.814"></status>
+</kw>
+<kw name="Then Validar sucesso de retorno">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.820" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20191120 16:38:56.820" endtime="20191120 16:38:56.820"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Resposta.status_code: ${RESPOSTA.status_code}</arg>
+</arguments>
+<msg timestamp="20191120 16:38:56.820" level="INFO">Resposta.status_code: 200</msg>
+<status status="PASS" starttime="20191120 16:38:56.820" endtime="20191120 16:38:56.820"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.819" endtime="20191120 16:38:56.824"></status>
+</kw>
+<status status="PASS" starttime="20191120 16:38:56.483" endtime="20191120 16:38:56.826" critical="yes"></status>
+</test>
+<doc>Testes de API : http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart</doc>
+<status status="PASS" starttime="20191120 16:38:55.336" endtime="20191120 16:38:56.834"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0">Critical Tests</stat>
+<stat pass="3" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" id="s1" name="APITests">APITests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
